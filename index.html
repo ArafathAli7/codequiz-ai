@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeQuiz AI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#23c55e" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="CodeQuiz AI" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen">
+    <div class="card">
+      <h1>🧠 CodeQuiz <span>AI</span></h1>
+      <p class="subtitle">Your AI-powered coding quiz companion</p>
+
+      <div id="tab-buttons">
+        <button class="tab-btn active" id="login-tab">Login</button>
+        <button class="tab-btn" id="signup-tab">Sign Up</button>
+      </div>
+
+      <div id="login-form">
+        <input type="text" id="login-username" placeholder="Username" />
+        <div class="password-wrapper">
+          <input type="password" id="login-password" placeholder="Password" />
+          <span class="eye-toggle" id="login-eye">👁️</span>
+        </div>
+        <button class="primary-btn" id="login-btn">Login</button>
+        <p id="login-error" class="error-msg hidden">Invalid username or password</p>
+      </div>
+
+      <div id="signup-form" class="hidden">
+        <input type="text" id="signup-username" placeholder="Choose a Username" />
+        <div class="password-wrapper">
+          <input type="password" id="signup-password" placeholder="Choose a Password" />
+          <span class="eye-toggle" id="signup-eye">👁️</span>
+        </div>
+        <button class="primary-btn" id="signup-btn">Create Account</button>
+        <p id="signup-error" class="error-msg hidden">Username already exists!</p>
+        <p id="signup-success" class="success-msg hidden">Account created! Please login.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME SCREEN -->
+  <div id="home-screen" class="screen hidden">
+    <div class="card">
+      <h1>🧠 CodeQuiz <span>AI</span></h1>
+      <p id="welcome-msg">Welcome back!</p>
+      <p class="subtitle">Choose your difficulty level</p>
+
+      <div class="stats-box">
+        <div class="stat">
+          <span id="total-attempts">0</span>
+          <label>Quizzes Taken</label>
+        </div>
+        <div class="stat">
+          <span id="best-score">0</span>
+          <label>Best Score</label>
+        </div>
+        <div class="stat">
+          <span id="highest-level">-</span>
+          <label>Best Level</label>
+        </div>
+      </div>
+
+      <div class="levels-grid" id="levels-grid"></div>
+      <button class="secondary-btn" id="logout-btn">Logout</button>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quiz-screen" class="screen hidden">
+    <div class="card">
+
+      <div class="top-bar">
+        <span id="level-label">Beginner</span>
+        <span id="score-display">Score: 0</span>
+      </div>
+
+      <div class="top-bar" style="margin-top:4px;">
+        <span id="question-count">Question 1 of 10</span>
+        <span id="timer-display" class="timer">⏱ 30s</span>
+      </div>
+
+      <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+      </div>
+
+      <h2 id="question-text">Question goes here</h2>
+
+      <div id="options-container"></div>
+
+      <!-- FEEDBACK -->
+      <div id="feedback-box" class="hidden">
+        <p id="feedback-text"></p>
+
+        <!-- AI EXPLANATION (UPDATED ✅) -->
+        <div id="ai-explanation">
+          <span class="ai-label">🤖 AI Explanation</span>
+          <p id="ai-text">Click “Explain Answer 🤖” to see why.</p>
+
+          <button id="explain-btn" class="secondary-btn" style="margin-top:10px; display:none;">
+            Explain Answer 🤖
+          </button>
+        </div>
+
+        <button class="primary-btn" id="next-btn">Next Question →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="result-screen" class="screen hidden">
+    <div class="card">
+      <h1>Quiz Complete! 🎉</h1>
+
+      <div class="score-circle" id="score-circle" style="--score-pct: 0%">
+  <span class="score-circle-text" id="score-circle-text">0/10</span>
+</div>
+<p id="final-score">You scored 0 out of 10</p>
+      <p id="performance-msg"></p>
+
+      <div id="ai-feedback-box">
+        <span class="ai-label">🤖 AI Performance Feedback</span>
+        <p id="ai-feedback-text">Analyzing your performance...</p>
+      </div>
+
+      <button class="primary-btn" id="restart-btn">Try Same Level 🔄</button>
+      <button class="secondary-btn" id="home-btn">Choose Level 🏠</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
