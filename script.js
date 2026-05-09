@@ -500,6 +500,7 @@ function showResults() {
 
   showScreen('result-screen');
   document.getElementById('ai-feedback-text').textContent = 'Analyzing your performance...';
+  getAIFeedback(score, total, wrongAnswers);
 
   // Score circle
   const scorePct = `${percentage}%`;
@@ -576,7 +577,8 @@ async function getAIFeedback(score, total, wrongAnswers) {
   } catch {
     document.getElementById('ai-feedback-text').textContent = '⚠️ Could not connect to server. Make sure backend is running!';
   }
-  // =============================================
+}
+// =============================================
 //  CONFETTI ANIMATION
 // =============================================
 function launchConfetti() {
@@ -631,6 +633,7 @@ function showScreenAnimated(screenId) {
 // =============================================
 function showAILoading(elementId) {
   const el = document.getElementById(elementId);
+  if (!el) return;
   el.innerHTML = `
     <div class="ai-loading">
       <div class="ai-dot"></div>
@@ -638,7 +641,6 @@ function showAILoading(elementId) {
       <div class="ai-dot"></div>
     </div>
   `;
-}
 }
 function showToastMsg(msg) {
   const existing = document.getElementById('toast-msg');

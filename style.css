@@ -471,8 +471,8 @@ input::placeholder {
 .level-btn.hard { border-color: #ef444444; }
 .level-btn.coder { border-color: #ec489944; }
 .level-btn.vibecoder { border-color: #8b5cf644; }
-.level-btn.maybe-possible { border-color: #06b6d444; }
-.level-btn.superstar { border-color: #f97316 44; }
+.level-btn.maybepossible { border-color: #06b6d444; }
+.level-btn.superstar { border-color: #f9731644; }
 .level-btn.impossible { border-color: #dc262644; }
 
 /* ── TIMER ── */
