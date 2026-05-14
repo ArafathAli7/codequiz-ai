@@ -539,7 +539,7 @@ async function getAIExplanation(question, selectedIndex) {
     : question.options[selectedIndex];
 
   try {
-    const res = await fetch('https://codequiz-ai.onrender.com', {
+    const res = await fetch('https://codequiz-ai.onrender.com/explain', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -561,7 +561,7 @@ async function getAIExplanation(question, selectedIndex) {
 // =============================================
 async function getAIFeedback(score, total, wrongAnswers) {
   try {
-    const res = await fetch('https://codequiz-ai.onrender.com', {
+    const res = await fetch('https://codequiz-ai.onrender.com/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
