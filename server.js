@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 
@@ -9,6 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = 3000;
+
+// Debug: Check if API key is loaded
+console.log("API Key loaded:", process.env.NVIDIA_API_KEY ? "✅ Yes" : "❌ No");
+if (process.env.NVIDIA_API_KEY) {
+  console.log("API Key starts with:", process.env.NVIDIA_API_KEY.substring(0, 10));
+}
 
 app.post("/explain", async (req, res) => {
   try {
@@ -37,7 +44,15 @@ app.post("/explain", async (req, res) => {
     });
 
     const data = await response.json();
+    console.log("NVIDIA response status:", response.status);
     console.log("NVIDIA response:", JSON.stringify(data));
+    
+    if (!response.ok) {
+      console.error("API Error:", data);
+      res.json({ explanation: "⚠️ API Error: " + (data.detail || data.message || "Unknown error") });
+      return;
+    }
+    
     const text = data.choices?.[0]?.message?.content;
     res.json({ explanation: text || "⚠️ No explanation received." });
 
@@ -70,7 +85,15 @@ app.post("/feedback", async (req, res) => {
     });
 
     const data = await response.json();
+    console.log("NVIDIA feedback response status:", response.status);
     console.log("NVIDIA feedback response:", JSON.stringify(data));
+    
+    if (!response.ok) {
+      console.error("API Error:", data);
+      res.json({ feedback: "⚠️ API Error: " + (data.detail || data.message || "Unknown error") });
+      return;
+    }
+    
     const text = data.choices?.[0]?.message?.content;
     res.json({ feedback: text || "⚠️ No feedback received." });
 
